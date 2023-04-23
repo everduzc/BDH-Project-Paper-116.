@@ -24,7 +24,8 @@ print(len(train_filenames), len(test_filenames), len(leaderboard_filenames))
 print(test_filenames, leaderboard_filenames)
 input()
 
-basedir = "/Users/erics/Documents/Gtech/BDH/Project/2Dto3D/TransSeg-main/src/data/acdc/training"
+#edit this to specify your path
+basedir = "/Users/erics/Documents/Gtech/BDH/Project/2Dto3D/project/src/data/acdc/training"
 outputdir = f"processed"
 
 
@@ -48,10 +49,10 @@ for i, filename in enumerate(all_filenames):
     filename_noext = filename.split(".")[0]
     patient_id = filename.split("_")[0]
 
-    img = nib.load(f"{basedir}/{patient_id}/{filename}").get_data()
+    img = nib.load(f"{basedir}/{patient_id}/{filename}").get_fdata()
     label = nib.load(
         f'{basedir}/{patient_id}/{filename.replace(".nii.gz", "_gt.nii.gz")}'
-    ).get_data()
+    ).get_fdata()
 
     n_slices = img.shape[-1]
 
@@ -111,7 +112,8 @@ for i, filename in enumerate(all_filenames):
             }
         )
 
-basedir = "./testing/"
+#edit this to specify your path
+basedir = "/Users/erics/Documents/Gtech/BDH/Project/2Dto3D/project/src/data/acdc/testing"
 all_filenames = leaderboard_filenames
 json_metadata["test"] = []
 file2size = {}
@@ -121,7 +123,7 @@ for i, filename in enumerate(all_filenames):
     filename_noext = filename.split(".")[0]
     patient_id = filename.split("_")[0]
 
-    img = nib.load(f"{basedir}/{patient_id}/{filename}").get_data()
+    img = nib.load(f"{basedir}/{patient_id}/{filename}").get_fdata()
     h, w, d = img.shape[0], img.shape[1], img.shape[2]
     file2size[filename_noext] = (h, w, d)
 
