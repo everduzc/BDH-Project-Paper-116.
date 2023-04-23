@@ -1,0 +1,8 @@
+@inproceedings{zhang2022adapting,
+  title={Adapting Pre-trained Vision Transformers from 2D to 3D through Weight Inflation Improves Medical Image Segmentation},
+  author={Zhang, Yuhui and Huang, Shih-Cheng and Zhou, Zhengping and Lungren, Matthew P and Yeung, Serena},
+  booktitle={Machine Learning for Health},
+  pages={391--404},
+  year={2022},
+  organization={PMLR}
+}
