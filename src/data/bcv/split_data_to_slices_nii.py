@@ -11,7 +11,8 @@ N = 30
 
 val_slc = [1, 2, 3, 4, 8, 22, 25, 29, 32, 35, 36, 38]
 
-basedir = "RawData/Training/"
+#edit this to specify your path
+basedir = "/Users/erics/Documents/Gtech/BDH/Project/2Dto3D/project/src/data/bcv/training"
 outputdir = f"processed"
 file_idxs = list(range(1, 11)) + list(range(21, 41))
 
@@ -35,8 +36,8 @@ for i, idx in enumerate(file_idxs):
     else:
         raise
 
-    img = nib.load(f"{basedir}/img/img{idx:04d}.nii.gz").get_data()
-    label = nib.load(f"{basedir}/label/label{idx:04d}.nii.gz").get_data()
+    img = nib.load(f"{basedir}/img/img{idx:04d}.nii.gz").get_fdata()
+    label = nib.load(f"{basedir}/label/label{idx:04d}.nii.gz").get_fdata()
     n_slices = img.shape[-1]
     # img = np.array([cv2.resize(img[:, :, i], (224, 224), interpolation=cv2.INTER_LANCZOS4) for i in range(n_slices)]).transpose(1, 2, 0)
     # label = np.array([cv2.resize(label[:, :, i], (224, 224), interpolation=cv2.INTER_NEAREST) for i in range(n_slices)]).transpose(1, 2, 0)
@@ -83,7 +84,8 @@ for i, idx in enumerate(file_idxs):
             }
         )
 
-basedir = "RawData/Testing/"
+#edit this to specify your path
+basedir = "/Users/erics/Documents/Gtech/BDH/Project/2Dto3D/project/src/data/bcv/testing"
 file_idxs = list(range(61, 81))
 
 print("# Data:", len(file_idxs))
@@ -93,7 +95,7 @@ json_metadata["test"] = []
 for i, idx in enumerate(file_idxs):
     splitdir = "test"
 
-    img = nib.load(f"{basedir}/img/img{idx:04d}.nii.gz").get_data()
+    img = nib.load(f"{basedir}/img/img{idx:04d}.nii.gz").get_fdata()
     n_slices = img.shape[-1]
 
     print(splitdir, i, idx, img.shape, (img.mean(), img.std(), img.min(), img.max()))
